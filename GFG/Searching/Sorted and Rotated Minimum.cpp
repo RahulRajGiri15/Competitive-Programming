@@ -5,6 +5,7 @@
 class Solution {
     public:
       int findMin(vector<int>& arr) {
+        
           // method 1 -- Brute force
           // int minval = INT_MAX;
           // for(int i=0;i<arr.size();i++){
