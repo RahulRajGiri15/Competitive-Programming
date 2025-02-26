@@ -17,6 +17,7 @@ class Solution {
         int left = 0 , right = m-1;
         int top =0 , bottom = n-1;
         vector<int> ans;
+        ////////Main logic -- left->right,top->bottom,right->left,bottom->top
         while(top <= bottom && left <= right){
             /// right
             for(int i= left; i<=right; i++){
