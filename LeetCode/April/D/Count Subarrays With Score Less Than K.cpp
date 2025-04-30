@@ -2,40 +2,40 @@
 
 /////////https://leetcode.com/problems/count-subarrays-with-score-less-than-k/description/?envType=daily-question&envId=2025-04-28
 
+////////Sliding window
+///t-o(n)--each index is visted only twice // o(2n)
+////s-o(1)
 class Solution {
     public:
         long long countSubarrays(vector<int>& nums, long long k) {
             int n = nums.size();
-            
-    
-            long long result = 0;
-            long long sum    = 0;
-    
-            int i = 0;
-            int j = 0;
-    
-            while(j < n) {
-                sum += nums[j];
-    
-                while(i <= j && sum * (j - i + 1) >= k) { //shrink the window
-                    sum -= nums[i];
-                    i++;
+            long long res =0;
+            int right =0;
+            int left=0;
+            long long sum=0;
+            while(right<n){
+                sum += nums[right];
+                while(left<=right && sum * (right-left+1) >=k){
+                    ////shrinking the window
+                    sum -= nums[left];
+                    left++;
                 }
-    
-                //i...j
+                ///valid
+                //i....j
                 //i+1...j
-                //i+2...j
-                result += (j-i+1);
-                j++;
+                //i+2..j
+                res += right-left+1;
+                right++;
             }
-    
-            return result;
+            return res;
         }
     };
     
     
-    
-    ///////////////////// 
+    ///////////////////// brute force
+    ////t-o(n^2)
+    ///s-o(1)
+    ///s-o()
     // class Solution {
     // public:
     //     long long countSubarrays(vector<int>& nums, long long k) {
@@ -50,10 +50,10 @@ class Solution {
     //                 if((long long) sum * len < k){
     //                     cnt++;
     //                 }
-                    ///////
-    //                 if((long long) sum * j-i+1 < k){
-    //                     cnt++;
-    //                 }
+    //                 /////
+    //                 // if((long long) sum * j-i+1 < k){
+    //                 //     cnt++;
+    //                 // }
     //             }
     //         }
     //         return cnt;
@@ -61,6 +61,9 @@ class Solution {
     // };
     
     /////////////////////////
+    ////t-o(n^3)
+    ///s-o(n)
+    
     // class Solution {
     // public:
     //     long long countSubarrays(vector<int>& nums, long long k) {
@@ -84,3 +87,37 @@ class Solution {
     //         return cnt;
     //     }
     // };
+/////////////////////////
+// class Solution {
+//     public:
+//         long long countSubarrays(vector<int>& nums, long long k) {
+//             int n = nums.size();
+            
+    
+//             long long result = 0;
+//             long long sum    = 0;
+    
+//             int i = 0;
+//             int j = 0;
+    
+//             while(j < n) {
+//                 sum += nums[j];
+    
+//                 while(i <= j && sum * (j - i + 1) >= k) { //shrink the window
+//                     sum -= nums[i];
+//                     i++;
+//                 }
+    
+//                 //i...j
+//                 //i+1...j
+//                 //i+2...j
+//                 result += (j-i+1);
+//                 j++;
+//             }
+    
+//             return result;
+//         }
+//     };
+    
+    
+    
