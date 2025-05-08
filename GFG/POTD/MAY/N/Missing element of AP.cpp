@@ -1,0 +1,30 @@
+/////Missing element of AP
+
+///////https://www.geeksforgeeks.org/problems/missing-element-of-ap2228/1
+
+class Solution {
+    public:
+      int findMissing(vector<int> &arr) {
+          int n = arr.size();
+          int temp = INT_MAX;
+          for(int i = 1; i < n; i++){
+              if(temp == INT_MAX) temp = abs(arr[i]-arr[i-1]);
+              else{
+                  if(temp != abs(arr[i]-arr[i-1])){
+                      if(temp < arr[i]-arr[i-1]){
+                        
+                        if(arr[0] < arr[1]) return arr[i-1]+temp;
+                        else return arr[i-1]-temp;
+                      } 
+                      else{
+                          if(arr[0] < arr[1]) return arr[i-2]+(arr[i]-arr[i-1]);
+                        else return arr[i-2]-abs(arr[i]-arr[i-1]);
+                      }
+                  }
+              }
+          }
+          if(arr[0] < arr[1])
+          return arr[n-1]+temp;
+          else return arr[n-1]-temp;
+      }
+  };
