@@ -1,0 +1,31 @@
+///////Largest number in K swaps
+
+
+/////////https://www.geeksforgeeks.org/problems/largest-number-in-k-swaps-1587115620/1
+
+
+class Solution {
+public:
+    string maxNum = "";
+    void helper(string &str, int k, int idx) {
+        if (k == 0) return;
+        char maxDigit = str[idx];
+        for (int i = idx + 1; i < str.size(); i++) {
+            if (str[i] > maxDigit) maxDigit = str[i];
+        }
+        if (maxDigit != str[idx]) k--;
+        for (int i = str.size() - 1; i >= idx; i--) {
+            if (str[i] == maxDigit) {
+                swap(str[i], str[idx]);
+                if (str > maxNum) maxNum = str;
+                helper(str, k, idx + 1);
+                swap(str[i], str[idx]);
+            }
+        }
+    }
+    string findMaximumNum(string s, int k) {
+        maxNum = s;
+        helper(s, k, 0);
+        return maxNum;
+    }
+};
