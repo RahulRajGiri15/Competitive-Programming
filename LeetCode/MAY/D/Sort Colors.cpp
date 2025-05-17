@@ -2,6 +2,33 @@
 
 ////////https://leetcode.com/problems/sort-colors/description/?envType=daily-question&envId=2025-05-17
 
+////t-o(n)]
+////s-o(1)
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+       int n = nums.size();
+       int i=0;
+       int j=0;
+       int k=n-1;
+       while(j<=k){
+        if(nums[j]==1){
+            j++;
+        }
+        else if(nums[j]==0){
+            swap(nums[i],nums[j]);
+            i++;
+            j++;
+        }
+        else if(nums[j]==2){
+            swap(nums[k],nums[j]);
+            k--;
+        }
+       }
+    }
+};
+////////////////////
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
